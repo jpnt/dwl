@@ -9,15 +9,15 @@ static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will
 static const unsigned int borderpx         = 1;  /* border pixel of windows */
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
-static const char *fonts[]                 = {"monospace:size=10"};
+static const char *fonts[]                 = {"DejaVuSansMono:size=16"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 static uint32_t colors[][3]                = {
 	/*               fg          bg          border    */
 	[SchemeNorm] = { 0xbbbbbbff, 0x222222ff, 0x444444ff },
-	[SchemeSel]  = { 0xeeeeeeff, 0x005577ff, 0x005577ff },
-	[SchemeUrg]  = { 0,          0,          0x770000ff },
+	[SchemeSel]  = { 0xeeeeeeff, 0xba732cff, 0xba732cff },
+	[SchemeUrg]  = { 0,          0,          0xba2c73ff },
 };
 
 /* tagging - TAGCOUNT must be no greater than 31 */
@@ -126,10 +126,11 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[] = { "footclient", NULL };
-static const char *menucmd[] = { "wmenu-run", NULL };
+static const char *runcmd[] = { "/bin/sh", "-c", "exec $(tofi-run)", NULL };
+static const char *druncmd[] = { "/bin/sh", "-c", "exec $(tofi-drun", NULL };
 static const char *scrshot[] = { "grim", NULL };
 static const char *scrshot_region[] = { "/bin/sh", "-c", "grim -g \"$(slurp)\"", NULL };
-/* audio handled here pipewire must be controlled by user (wireplumber) */
+/* audio handled here because pipewire must be controlled by user (wireplumber) */
 static const char *volup[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
 static const char *voldown[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
 static const char *volmute[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
@@ -137,7 +138,8 @@ static const char *volmute[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "t
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
-	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
+	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = runcmd} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_P,          spawn,          {.v = druncmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_s,          spawn,          {.v = scrshot} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          {.v = scrshot_region} },
