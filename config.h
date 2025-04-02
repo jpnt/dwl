@@ -132,8 +132,9 @@ static const char *scrshot[] = { "grim", NULL };
 static const char *scrshot_region[] = { "/bin/sh", "-c", "grim -g \"$(slurp)\"", NULL };
 /* audio handled here because pipewire must be controlled by user (wireplumber) */
 static const char *volup[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
-static const char *voldown[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
+static const char *voldn[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
 static const char *volmute[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
+static const char *micmute[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -144,8 +145,9 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_s,          spawn,          {.v = scrshot} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          {.v = scrshot_region} },
 	{ 0,      XKB_KEY_XF86AudioRaiseVolume,          spawn,          {.v = volup} },
-	{ 0,      XKB_KEY_XF86AudioLowerVolume,          spawn,          {.v = voldown} },
+	{ 0,      XKB_KEY_XF86AudioLowerVolume,          spawn,          {.v = voldn} },
 	{ 0,             XKB_KEY_XF86AudioMute,          spawn,          {.v = volmute} },
+	{ 0,          XKB_KEY_XF86AudioMicMute,          spawn,          {.v = micmute} },
 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
