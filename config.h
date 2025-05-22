@@ -130,6 +130,7 @@ static const char *runcmd[] = { "/bin/sh", "-c", "exec $(tofi-run)", NULL };
 static const char *druncmd[] = { "/bin/sh", "-c", "exec $(tofi-drun)", NULL };
 static const char *scrshot[] = { "grim", NULL };
 static const char *scrshot_region[] = { "/bin/sh", "-c", "grim -g \"$(slurp)\"", NULL };
+static const char *lockcmd[] = { "swaylock", "-c", "000000" };
 /* audio handled here because pipewire must be controlled by user (wireplumber) */
 static const char *volup[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
 static const char *voldn[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
@@ -144,6 +145,7 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_s,          spawn,          {.v = scrshot} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          {.v = scrshot_region} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Delete,     spawn,          {.v = lockcmd}},
 	{ 0,      XKB_KEY_XF86AudioRaiseVolume,          spawn,          {.v = volup} },
 	{ 0,      XKB_KEY_XF86AudioLowerVolume,          spawn,          {.v = voldn} },
 	{ 0,             XKB_KEY_XF86AudioMute,          spawn,          {.v = volmute} },
