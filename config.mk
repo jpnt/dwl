@@ -8,13 +8,23 @@ PREFIX = /usr/local
 MANDIR = $(PREFIX)/share/man
 DATADIR = $(PREFIX)/share
 
-# XWAYLAND =
-# XLIBS =
+XWAYLAND =
+XLIBS =
 # Uncomment to build XWayland support
 XWAYLAND = -DXWAYLAND
 XLIBS = xcb xcb-icccm
 
 CC = gcc
-CFLAGS = -O2 -march=native -pipe -fno-plt -fomit-frame-pointer -flto
-LDFLAGS = -flto -s
-
+CFLAGS = -O2 \
+         -march=native \
+         -pipe \
+         -fomit-frame-pointer \
+         -flto \
+         -ffunction-sections \
+         -fdata-sections \
+         -fno-stack-protector \
+         -D_FORTIFY_SOURCE=0 \
+         -fvisibility=hidden \
+         -std=c99 \
+         -Wall -Wextra -Wno-unused -Wno-unused-parameter
+LDFLAGS = -flto -Wl,--gc-sections -Wl,--as-needed -s
