@@ -17,9 +17,9 @@ static const float rootcolor[]             = COLOR(0x000000ff);
 static const float fullscreen_bg[]         = {0.1f, 0.1f, 0.1f, 1.0f}; /* You can also use glsl colors */
 static uint32_t colors[][3]                = {
 	/*               fg          bg          border    */
-	[SchemeNorm] = { 0xffffffff, 0x000000ff, 0x333333ff },
-	[SchemeSel]  = { 0xffffffff, 0xce9c1eff, 0xce9c1eff },
-	[SchemeUrg]  = { 0,          0,          0xce451eff },
+	[SchemeNorm] = { 0xc9d1d9ff, 0x000000ff, 0x161b22ff },
+	[SchemeSel]  = { 0xa5d6ffff, 0x000000ff, 0x79c0ffff },
+	[SchemeUrg]  = { 0x000000ff, 0xff7b72ff, 0xff7b72ff },
 };
 
 /* tagging - TAGCOUNT must be no greater than 31 */
