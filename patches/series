@@ -3,3 +3,5 @@ bartruecenteredtitle.patch
 fullscreenadaptivesync-v0.7.patch
 hide_vacant_tags.patch
 smartborders-0.7.patch
+swallow.patch
+xwayland-handle-minimize.patch

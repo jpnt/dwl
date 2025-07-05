@@ -25,6 +25,6 @@ CFLAGS = -O2 \
          -fno-stack-protector \
          -D_FORTIFY_SOURCE=0 \
          -fvisibility=hidden \
-         -std=c99 \
-         -Wall -Wextra -Wno-unused -Wno-unused-parameter
+         -Wall -Wextra -Wno-unused -Wno-unused-parameter \
+         -Wno-deprecated-declarations
 LDFLAGS = -flto -Wl,--gc-sections -Wl,--as-needed -s
