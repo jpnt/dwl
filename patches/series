@@ -5,3 +5,4 @@ hide_vacant_tags.patch
 smartborders-0.7.patch
 swallow.patch
 xwayland-handle-minimize.patch
+sticky.patch
